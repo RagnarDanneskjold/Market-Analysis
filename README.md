@@ -1,6 +1,9 @@
 # Market-Analysis
+
 Creating customer segments using unsupervised learning
+
 The data comes from customers.csv
+
 The visuals code from visuals.py was provided by Udacity as part of the Machine Learning Engineer Nanodegree program.
 
 
