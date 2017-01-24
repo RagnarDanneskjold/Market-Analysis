@@ -9,6 +9,10 @@ from IPython import get_ipython
 get_ipython().run_line_magic('matplotlib', 'inline')
 ###########################################
 
+"""
+code provided by Udacity for visualizations
+"""
+
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import pandas as pd
