@@ -182,7 +182,7 @@ ax.set_xlabel('n_clusters')
 ax.set_ylabel('silhouette score')
 
 ax.scatter(testRange, all_scores, c = 'r', marker = '.')
-plt.show()
+plt.show() #it should become clear that 2 clusters is the best until you begin overfitting the data (a lot of clusters)
 
 print(type(preds))
 # Display the results of the clustering from implementation
