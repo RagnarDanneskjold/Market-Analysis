@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 from IPython.display import display
 import visuals as vs
+from sklearn import tree
 
 #load the dataset and remove Region and Channel features
 data = pd.read_csv("customers.csv")
@@ -19,23 +20,20 @@ display(data.describe())
 #Choose three trivial indices from the dataset.
 indices = [405, 210, 13]
 
-# Create a DataFrame of the chosen samples
 samples = pd.DataFrame(data.loc[indices], columns = data.keys()).reset_index(drop = True)
 print "Chosen samples of wholesale customers dataset:"
 display(samples)
-
-#Make a copy of the DataFrame, using the 'drop' function to drop the given feature
 new_data = data.drop(['Milk'], axis = 1)
 new_labels = data['Milk']
 
-#split the data into training and testing sets using the given feature as the target
+
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(new_data, new_labels, \
                                     test_size = 0.25, \
                                    random_state = 7)
 
-#Create a decision tree regressor and fit it to the training set
-from sklearn import tree
+
+
 regressor = tree.DecisionTreeRegressor(random_state = 7)
 regressor.fit(X_train, y_train)
 
@@ -140,11 +138,8 @@ range1 = np.arange(2, 5, 1)
 range2 = np.arange(5, 300, 5)
 testRange = np.concatenate((range1, range2), axis = 0)
 
-
 score = 0
-
 all_scores = []
-
 
 for i in testRange:
     clusterer = KMeans(n_clusters = i)
@@ -160,10 +155,11 @@ for i in testRange:
     if scoreNew >= score:
         score = scoreNew
         print 'n_clusters:', i, '. New score =', score 
+        
 print "Done searching"
 print "Final score is", score
 
-#for the next few parts, I will use 4 customer segments
+#for the next few parts, I will use 2 customer segments
 clusterer = KMeans(n_clusters = 2)
 clusterer.fit(reduced_data)
 preds = clusterer.predict(reduced_data)
